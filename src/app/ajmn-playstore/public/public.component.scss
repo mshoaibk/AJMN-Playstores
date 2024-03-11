@@ -1,0 +1,113 @@
+.main-cards {
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+
+    .card {
+        border-radius: 15px, 15px, 0px, 0px;
+        border: 0px;
+        width: 32%;
+        margin-top: 10px;
+
+        .card-img-top {
+            width: 100%;
+            height: 250px;
+            justify-content: center;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            padding: 33px;
+            background: #1a1c3c;
+        }
+
+        .card-body {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .card-text {
+                .heading {
+                    font-size: 22px;
+                    font-weight: 500;
+                    font-weight: 25px;
+                    color: black;
+                }
+
+                .text {
+                    font-size: 18px;
+                    font-weight: 400;
+                    font-weight: 20px;
+                    color: black;
+                }
+
+            }
+
+            img {
+                width: 100px;
+                height: 100px;
+            }
+
+            .small-screen-button {
+                display: none;
+
+                button {
+                    background-color: #D5A10F;
+                    color: white;
+                    font-weight: 400;
+                    font-size: 18px;
+                    border-radius: 16px;
+                    width: 100px;
+                }
+            }
+        }
+    }
+
+    /* Media Query for screens smaller than 768px */
+    @media (max-width: 768px) {
+        .card {
+            width: 100%;
+
+            .card-img-top {
+                display: none;
+            }
+
+            .small-screen-button {
+                display: block !important;
+
+                button {
+                    background-color: #D5A10F;
+                    color: white;
+                    font-weight: 500;
+                    border: 0px;
+                    padding: 5px;
+                    font-size: 18px;
+                    border-radius: 16px;
+                    width: 100px;
+                }
+            }
+        }
+    }
+
+    /* Media Query for screens between 769px and 992px */
+    @media (min-width: 769px) and (max-width: 992px) {
+        .card {
+            width: 48%;
+        }
+    }
+
+    /* Media Query for screens between 993px and 1200px */
+    @media (min-width: 993px) and (max-width: 1200px) {
+        .card {
+            width: 31%;
+        }
+    }
+
+    /* Media Query for screens larger than 1200px */
+    @media (min-width: 1201px) {
+        .card {
+            width: 32%;
+        }
+    }
+}

@@ -1,0 +1,170 @@
+.main-page {
+    .top-page {
+        height: 500px;
+        background: linear-gradient(180deg, #17162C 0%, #21295D 100%);
+        display: flex;
+        justify-content: unset;
+        align-items: end;
+        padding-left: 5%;
+        padding-bottom: 40px;
+
+        div {
+            .left-section {
+                img {
+                    width: 100%;
+                    height: 150px;
+                }
+            }
+
+            .right-section {
+                color: white;
+            }
+        }
+    }
+
+    .detail-section {
+        padding-left: 6%;
+        padding-right: 6%;
+
+        .mobile {
+            display: flex;
+            margin-top: 40px;
+
+            img {
+                width: 100%;
+            }
+
+        }
+
+        .bottom-text-section {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            font-weight: 700;
+
+            div {
+                width: 100%;
+
+                .arabic {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: end;
+                }
+
+                p {
+                    margin: 0px;
+                    font-size: 18px;
+                    font-weight: 700;
+                    line-height: 20px;
+                }
+            }
+        }
+
+        .nav-pills {
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            width: 100%;
+
+            .nav-link {
+                background-color: transparent;
+                color: #666666;
+                font-size: 26px;
+                font-weight: 500;
+            }
+
+            .nav-link:active {
+                color: black;
+                border-bottom: 4px solid black;
+                border-radius: 0px;
+            }
+
+        }
+
+    }
+
+    .carousel-item {
+        display: flex;
+    }
+
+    .Arabic-button {
+        height: 30px;
+        width: 100px;
+        border: 0px;
+        border-radius: 15px;
+        display: none;
+    }
+    .download-sec-main{
+        display: none;
+    }
+}
+
+/* Media Query for screens smaller than 768px */
+@media (max-width: 768px) {
+    .not-on-small {
+        display: none;
+    }
+
+    .main-page {
+        .top-page {
+            justify-content: end;
+            padding-right: 4%;
+            background-image: url('../../../assets/playstore/Imtiayazat-Banner-Website-Sep20-768\ 2.png');
+        }
+    }
+
+    .Arabic-button {
+        display: block !important;
+        background-color: #D5A10F;
+        text-align: center;
+        font-size: 16px;
+        font-weight: 600;
+        color: white;
+    }
+
+    .left-sectionl {
+        display: flex;
+        gap: 10px;
+        font-size: 26px;
+        line-height: 22px;
+        font-weight: 700;
+    }
+    .download-sec-main{
+        display: block !important;
+    }
+    .download-sec {
+        display: flex;
+        justify-content: space-between;
+        img {
+            width: 100px;
+            height: 100px;
+        }
+
+        .save {
+            width: 40px;
+            height: 40px;
+            align-items: end;
+            justify-content: center;
+        }
+    }
+    .top-text{
+        font-size: 16px;
+        font-weight: 500;
+        color: lightgray;
+    }
+    .bottom-text{
+        font-size: 14px;
+        font-weight: 400;
+        color: lightgray;
+    }
+    .dropdown-toggle{
+        width: 300px;
+        /* color: yellow; */
+        background-color: #D5A10F;
+        border: 0px;
+        height: 45px;
+        font-size: 17px;
+        font-weight: 600;
+    }
+}

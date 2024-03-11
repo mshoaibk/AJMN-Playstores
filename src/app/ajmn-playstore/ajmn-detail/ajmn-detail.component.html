@@ -1,0 +1,211 @@
+<div class="main-page">
+    <div class="top-page">
+        <div class="d-flex gap-4">
+            <div class="left-section not-on-small">
+                <img src="../../../assets/detail/AJA-Watch-Icon.png" alt="">
+            </div>
+            <div class=" right-section">
+                <h2 class="not-on-small">Al Jazeera Enterprise (ERP)</h2>
+                <p class="not-on-small">Human Resources Directorate</p>
+                <div class="d-flex text-center align-items-center justify-content-between">
+                    <div class="not-on-small">
+                        <p>Available for</p>
+                        <img src="../../../assets/detail/All AJMN Staff Pill.svg" alt="">
+                    </div>
+                    <div>
+                        <p>iOS</p>
+                        <img src="../../../assets/detail/Apple Logo.svg" width="60" height="60" alt="">
+                    </div>
+                    <div>
+                        <p>Android</p>
+                        <img src="../../../assets/detail/Android.svg" width="60" height="60" alt="">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="download-sec-main">
+        <div class="download-sec mt-3 mb-3 ps-3 pe-3">
+            <div class="left-sectionl">
+                <img src="../../../assets/detail/AJA-Watch-Icon.png" alt="">
+                <div class="d-flex align-items-end pb-2">
+                    Imtiyazat
+                </div>
+            </div>
+            <div class="d-flex align-items-end">
+                <img src="../../../assets/detail/save_alt_24px.svg" class="save pb-2" alt="">
+            </div>
+        </div>
+        <p class="text-center">Get discounts and offers on your favorite brands and restaurants...</p>
+        <div class="d-flex justify-content-between align-items-end text-center ps-5 pe-5">
+            <div>
+                <div class="top-text">16 MB</div>
+                <div class="bottom-text">Size</div>
+            </div>
+            <div>
+                <div class="top-text">Sep 30 2022</div>
+                <div class="bottom-text">Published</div>
+            </div>
+            <div>
+                <div class="top-text">1.07</div>
+                <div class="bottom-text">Version</div>
+            </div>
+            <div>
+                <img src="../../../assets/playstore/al-jazeera-png-al-jazeera-logo-1431 (2).jpg" alt="">
+                <div class="top-text">Staff</div>
+                <div class="bottom-text">Available for</div>
+            </div>
+        </div>
+
+        <div class="dropdown d-flex  justify-content-center w-100 mt-4">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <div class="d-flex align-items-center justify-content-between ">
+                    <div class="d-flex ps-3 align-items-center gap-2">
+                        <div>Install For</div>
+                        <div><img src="../../../assets/detail/Apple Logo.svg " style="width: 30px;" alt=""></div>
+                    </div>
+                    <div class="dropdown">
+                        <img src="../../../assets/detail/Vector.svg" style="width: 20px; height: 20px;" alt="">
+                    </div>
+                </div>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+        </div>
+    </div>
+    <div class="detail-section">
+        <div class="mobile">
+            <div><img src="../../../assets/detail/WhatsApp Image 2022-10-02 at 12.33.svg" alt=""></div>
+            <div><img src="../../../assets/detail/WhatsApp Image 2022-10-02 at 12.34 (1).svg" alt=""></div>
+            <div><img src="../../../assets/detail/WhatsApp Image 2022-10-02 at 12.34.svg" alt=""></div>
+            <div><img src="../../../assets/detail/WhatsApp Image 2022-10-02 at 12.37 1.svg" alt=""></div>
+        </div>
+        <div class="mt-5">
+            <div class="d-flex w-100 justify-content-between">
+                <h2>
+                    About this app
+                </h2>
+                <button class="Arabic-button " (click)="toggleLanguage()">
+                    عربي
+                </button>
+            </div>
+            <div class="bottom-text-section">
+                <div *ngIf="showEnglishSection">
+                    <div>
+                        <p>Features of this app:</p>
+                        <p>- Apply for leave</p>
+                        <p>- Apply for an exit permit</p>
+                        <p>- View your paystubss</p>
+                        <p>- Manager approvals</p>
+                        <p>- Message Center</p>
+                        <p>- Support for Apple Watch</p>
+                    </div>
+                    <div class="mt-4">
+                        <p>For iOS users:</p>
+                        <p>Please ensure you follow these steps after you install the app:</p>
+                        <p>1. Go to Settings > General > Profiles & Device Management</p>
+                        <p>2. Click on "Al Jazeera Satellite Network" under enterprise apps</p>
+                        <p>3. Click on "Trust Al Jazeera Satellite Network"</p>
+                        <p>4. Click on "Trust”</p>
+                    </div>
+                </div>
+                <div *ngIf="!showEnglishSection"
+                    class="d-flex arabic-section w-100 align-items-center justify-content-start text-start">
+                    <div class="arabic">
+                        <p>لمستخدمي نظام iOS:</p>
+                        <p>يرجى التأكد من اتباع الخطوات التالية بعد تحميل التطبيق:</p>
+                        <p>١. اذهب إلى الإعدادات > عام > ملفات التعريف وادارة الجهاز</p>
+                        <p>٢. اضغط على “Al Jazeera Satellite Network" تحت تطبيقات مؤسسة</p>
+                        <p>٣. اضغط على "الوثوق فيAl Jazeera Satellite Network"</p>
+                        <p>٤. اضغط على "الوثوق"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mt-5">
+            <ul class="nav nav-pills mb-5 tab-change-on-larger" id="pills-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link " id="pills-profile-tab" data-bs-toggle="pill"
+                        data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
+                        aria-selected="false">Write Review</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
+                        data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
+                        aria-selected="true">Reviews</button>
+                </li>
+            </ul>
+            <div class="tab-content" id="pills-tabContent mt-5">
+                <div class="tab-pane fade show active" id="pills-profile" role="tabpanel"
+                    aria-labelledby="pills-profile-tab">
+                    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <img src="../../../assets/playstore/AJA-Watch-Icon.svg" alt="">
+                                        <div class="card-text ps-2 pe-3">
+                                            <div class="heading">ddd</div>
+                                            <div class="text">
+                                                Entreprise Resource Planning. Manage accounts, leaves and more on mobile
+                                                device.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <img src="../../../assets/playstore/AJA-Watch-Icon.svg" alt="">
+                                        <div class="card-text ps-2 pe-3">
+                                            <div class="heading">dwewdd</div>
+                                            <div class="text">
+                                                Entreprise Resource Planning. Manage accounts, leaves and more on mobile
+                                                device.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+
+                                <div class="card">
+                                    <div class="card-body">
+                                        <img src="../../../assets/playstore/AJA-Watch-Icon.svg" alt="">
+                                        <div class="card-text ps-2 pe-3">
+                                            <div class="heading">d3333333333333332dd</div>
+                                            <div class="text">
+                                                Entreprise Resource Planning. Manage accounts, leaves and more on mobile
+                                                device.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleControls" role="button"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        </a>
+                    </div>
+
+
+
+                </div>
+                <div class="tab-pane fade  " id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                    a
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
