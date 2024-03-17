@@ -54,19 +54,22 @@
 
     <div class="mt-5">
         <ul class="nav nav-pills mb-5 tab-change-on-larger" id="pills-tab" role="tablist">
-            <li class="nav-item" role="presentation" *ngFor="let item of versionsData; let i = index">
-                <button class="nav-link" 
-                        [class.active]="activeTabIndex === i"
-                        [id]="'pills-' + item.heading.toLowerCase() + '-tab'"
-                        data-bs-toggle="pill"
-                        [attr.data-bs-target]="'#pills-' + item.heading.toLowerCase()"
-                        type="button"
-                        role="tab"
-                        aria-controls="'pills-' + item.heading.toLowerCase()"
-                        [attr.aria-selected]="activeTabIndex === i">
-                    {{ item.heading }}
-                </button>
-            </li>
+            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <li class="nav-item" *ngFor="let item of versionsData; let i = index" [ngClass]="{ 'active': activeTabIndex === i }">
+                  <button class="nav-link" 
+                          [id]="'pills-' + item.heading.toLowerCase() + '-tab'"
+                          data-bs-toggle="pill"
+                          [attr.data-bs-target]="'#pills-' + item.heading.toLowerCase()"
+                          type="button"
+                          role="tab"
+                          [attr.aria-controls]="'pills-' + item.heading.toLowerCase()"
+                          [attr.aria-selected]="activeTabIndex === i"
+                          (click)="setActiveTab(i)">
+                      {{ item.heading }}
+                  </button>
+                </li>
+              </ul>
+              
         </ul>
         <div class="tab-content" id="pills-tabContent mt-5">
             <div class="tab-pane fade" *ngFor="let item of versionsData; let i = index"

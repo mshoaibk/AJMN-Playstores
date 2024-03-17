@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-ajmn-playstore',
@@ -8,7 +8,13 @@ import { Component } from '@angular/core';
 export class AjmnPlaystoreComponent {
   versionsData!: { heading: string; versions: { productName: string; productDesc: string; }[] }[];
   activeTabIndex: number = 0;
+  @ViewChild('firstButton') firstButton!: ElementRef;
+  setActiveTab(index: number) {
+    this.activeTabIndex = index;
+  }
   ngOnInit() {
+    this.activeTabIndex = 0;
+   
     // Structure your data with headings
     this.versionsData = [
       {
@@ -141,5 +147,8 @@ export class AjmnPlaystoreComponent {
         ]
       },
     ];
+    setTimeout(() => {
+      this.firstButton.nativeElement.click();
+    });
   }
 }
