@@ -22,11 +22,12 @@
                     font-size: 70px;
                     font-weight: 600;
                     color: white;
+                    font-family: al-jazeera-bold;
                 }
 
                 p {
                     font-size: 22px;
-                    font-weight: 400;
+                    font-family: al-jazeera-regular;
                     line-height: 35px;
                     color: white;
                     text-align: start;
@@ -38,7 +39,7 @@
                     border-radius: 13px;
                     color: white;
                     padding: 15px;
-
+                    font-family: al-jazeera-bold;
                     font-size: 32px;
                     line-height: 32px;
                     font-weight: 500;
@@ -60,6 +61,7 @@
             color: #666666;
             font-size: 26px;
             font-weight: 500;
+            font-family: al-jazeera-bold;
         }
 
         .nav-link:active {
@@ -72,12 +74,49 @@
             display: block;
         }
 
-       
+
     }
+
     .small-tab-change {
         display: none;
     }
 
+}
+
+
+@media (max-width: 595px) {
+    .main-page .carousel-item .carousel-caption div h5 {
+        font-size: 40px;
+    }
+
+    .main-page .carousel-item .carousel-caption {
+        width: 100%;
+    }
+
+    .main-page .carousel-item .carousel-caption div {
+        width: 100%;
+    }
+
+    .main-page .carousel-item .carousel-caption div p {
+        font-size: 16px;
+        line-height: 35px;
+    }
+
+    .main-page .carousel-item .carousel-caption div button {
+        border: 2px solid white;
+        background-color: transparent;
+        border-radius: 13px;
+        color: white;
+        padding: 14px;
+        font-size: 20px;
+        line-height: 32px;
+        font-weight: 500;
+    }
+
+    .main-page .carousel-item img {
+        width: 100%;
+        height: 400px;
+    }
 }
 
 /* Media Query for screens smaller than 768px */
@@ -100,4 +139,32 @@
     .tab-change-on-larger {
         display: none;
     }
+
+    .download-btn {
+        justify-content: start !important;
+        ;
+    }
+}
+
+@media (max-width: 992px) {
+    .main-page {
+        padding-left: 4%;
+        padding-right: 4%;
+        background-color: #F5F5F7;
+    }
+
+    .main-page .carousel-item .carousel-caption {
+        width: 60%;
+    }
+
+    .main-page .carousel-item .carousel-caption div {
+        width: 80%;
+    }
+
+
+    .main-page .carousel-item img {
+        width: 100%;
+        height: 500px;
+    }
+
 }

@@ -1,3 +1,4 @@
+
 .main-cards {
     flex-wrap: wrap;
     gap: 20px;
@@ -33,6 +34,7 @@
                     font-weight: 500;
                     font-weight: 25px;
                     color: black;
+                    font-family: al-jazeera-bold;
                 }
 
                 .text {
@@ -40,9 +42,10 @@
                     font-weight: 400;
                     font-weight: 20px;
                     color: black;
+                    font-family: al-jazeera-regular;
                 }
 
-            }
+            }  
 
             img {
                 width: 100px;

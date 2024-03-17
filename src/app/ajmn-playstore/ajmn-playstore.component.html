@@ -7,7 +7,7 @@
                     <div>
                         <h5>Imtiyazat</h5>
                         <p>Get discounts and offers on your favorite brands and restaurants...</p>
-                        <div class="d-flex align-items-end justify-content-end w-100">
+                        <div class="d-flex align-items-end justify-content-end w-100 download-btn ">
                             <button>
                                 Download Now
                             </button>
@@ -21,7 +21,7 @@
                     <div>
                         <h5>Imtiyazat</h5>
                         <p>Get discounts and offers on your favorite brands and restaurants...</p>
-                        <div class="d-flex align-items-end justify-content-end w-100">
+                        <div class="d-flex align-items-end justify-content-end w-100 download-btn">
                             <button>
                                 Download Now
                             </button>
@@ -35,7 +35,7 @@
                     <div>
                         <h5>Imtiyazat</h5>
                         <p>Get discounts and offers on your favorite brands and restaurants...</p>
-                        <div class="d-flex align-items-end justify-content-end w-100">
+                        <div class="d-flex align-items-end justify-content-end w-100 download-btn">
                             <button>
                                 Download Now
                             </button>
@@ -54,33 +54,29 @@
 
     <div class="mt-5">
         <ul class="nav nav-pills mb-5 tab-change-on-larger" id="pills-tab" role="tablist">
-            <li class="nav-item" role="presentation">
-                <button class="nav-link " id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home"
-                    type="button" role="tab" aria-controls="pills-home" aria-selected="true">Public</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="pills-profile-tab" data-bs-toggle="pill"
-                    data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
-                    aria-selected="false">Enterprise</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact"
-                    type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Beta</button>
+            <li class="nav-item" role="presentation" *ngFor="let item of versionsData; let i = index">
+                <button class="nav-link" 
+                        [class.active]="activeTabIndex === i"
+                        [id]="'pills-' + item.heading.toLowerCase() + '-tab'"
+                        data-bs-toggle="pill"
+                        [attr.data-bs-target]="'#pills-' + item.heading.toLowerCase()"
+                        type="button"
+                        role="tab"
+                        aria-controls="'pills-' + item.heading.toLowerCase()"
+                        [attr.aria-selected]="activeTabIndex === i">
+                    {{ item.heading }}
+                </button>
             </li>
         </ul>
         <div class="tab-content" id="pills-tabContent mt-5">
-            <div class="tab-pane fade  " id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                <app-public></app-public>
-            </div>
-            <div class="tab-pane fade show active" id="pills-profile" role="tabpanel"
-                aria-labelledby="pills-profile-tab">
-                <app-enterorise></app-enterorise>
-            </div>
-            <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-                <app-beta></app-beta>
-            </div>
+            <div class="tab-pane fade" *ngFor="let item of versionsData; let i = index"
+            [class.show]="i === 0"
+            [id]="'pills-' + item.heading.toLowerCase()"
+            role="tabpanel"
+            [attr.aria-labelledby]="'pills-' + item.heading.toLowerCase() + '-tab'">
+           <app-versions [versions]="item.versions" [heading]="item.heading"></app-versions>
+       </div>
         </div>
-
         <div class="small-tab-change">
             <ul class="nav nav-pills" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
