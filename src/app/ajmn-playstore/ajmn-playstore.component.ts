@@ -15,6 +15,7 @@ export class AjmnPlaystoreComponent {
   }
   categoryData!: { heading: string; Apps: { productName: string; productDesc: string; }[] }[];
   activeTabIndex: number = 0;
+  @ViewChild('firstButton') firstButton!: ElementRef;
   setActiveTab(index: number) {
     this.activeTabIndex = index;
   }
