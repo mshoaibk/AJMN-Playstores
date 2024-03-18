@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-versions',
@@ -6,11 +7,19 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./versions.component.scss']
 })
 export class PublicComponent implements OnInit {
-  @Input() versions!: { productName: string; productDesc: string; }[];
+  constructor(
+    private router: Router,
+  ){
+
+  }
+  @Input() versions!: { id: any; productName: string; productDesc: string; bannerImage: string; logoImage: string }[];
   @Input() heading!: string;
 
   ngOnInit() {
     console.log("Versions:", this.versions);
     console.log("Heading:", this.heading);
+  }
+  ShowDetails(id:any){
+    this.router.navigate(['/ajmn-details', id]);
   }
 }

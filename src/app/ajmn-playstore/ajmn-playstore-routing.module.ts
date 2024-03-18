@@ -9,7 +9,7 @@ const routes: Routes = [
     component: AjmnPlaystoreComponent
   },
   {
-    path: 'ajmn-details',
+    path: 'ajmn-details/:id',
     component: AjmnDetailComponent
   }
 ];

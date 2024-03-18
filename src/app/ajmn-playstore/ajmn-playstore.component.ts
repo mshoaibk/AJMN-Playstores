@@ -1,4 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
+import { environment } from 'src/environments/environment.development';
+import { CommonService } from './services/common.service';
 
 @Component({
   selector: 'app-ajmn-playstore',
@@ -6,149 +8,45 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
   styleUrls: ['./ajmn-playstore.component.scss'],
 })
 export class AjmnPlaystoreComponent {
-  versionsData!: { heading: string; versions: { productName: string; productDesc: string; }[] }[];
+  versionsData: { heading: string; versions: { id: any; productName: string; productDesc: string; bannerImage: string; logoImage: string }[] }[] = [];
   activeTabIndex: number = 0;
-  @ViewChild('firstButton') firstButton!: ElementRef;
+
+  constructor(private commonService: CommonService) {}
+
   setActiveTab(index: number) {
     this.activeTabIndex = index;
   }
+
   ngOnInit() {
-    this.activeTabIndex = 0;
-   
-    // Structure your data with headings
-    this.versionsData = [
-      {
-        heading: "Public",
-        versions: [
-          { "productName": "Product X", "productDesc": "Innovative solution for managing enterprise resources efficiently on any device." },
-          { "productName": "Product Y", "productDesc": "Comprehensive enterprise resource planning system designed for modern businesses." },
-          {
-            "productName": "Product W",
-            "productDesc": "Powerful ERP solution to enhance productivity and optimize processes."
-          },
-          {
-            "productName": "Product P",
-            "productDesc": "Efficiently manage accounts, leaves, and more with our mobile-friendly ERP."
-          },
-          {
-            "productName": "Product Q",
-            "productDesc": "Customizable ERP system tailored to meet your business needs."
-          },
-          {
-            "productName": "Product R",
-            "productDesc": "Stay ahead of the curve with our cutting-edge enterprise resource planning software."
-          },
-          {
-            "productName": "Product S",
-            "productDesc": "Simplify complex business processes with our user-friendly ERP solution."
-          },
-          {
-            "productName": "Product T",
-            "productDesc": "Maximize efficiency and profitability with our robust ERP platform."
-          },
-          {
-            "productName": "Product U",
-            "productDesc": "Transform your business with our scalable and adaptable ERP solution."
-          },
-          {
-            "productName": "Product V",
-            "productDesc": "Optimize resource allocation and management with our ERP software."
-          },
-          {
-            "productName": "Product W",
-            "productDesc": "Improve decision-making and strategic planning with our ERP system."
-          }
-        ]
-      },
-      {
-        heading: "Enterprise",
-        versions: [
-          { "productName": "Product A", "productDesc": "Enterprise version A description." },
-          { "productName": "Product B", "productDesc": "Enterprise version B description." },
-          {
-            "productName": "Product W",
-            "productDesc": "Powerful ERP solution to enhance productivity and optimize processes."
-          },
-          {
-            "productName": "Product P",
-            "productDesc": "Efficiently manage accounts, leaves, and more with our mobile-friendly ERP."
-          },
-          {
-            "productName": "Product Q",
-            "productDesc": "Customizable ERP system tailored to meet your business needs."
-          },
-          {
-            "productName": "Product R",
-            "productDesc": "Stay ahead of the curve with our cutting-edge enterprise resource planning software."
-          },
-          {
-            "productName": "Product S",
-            "productDesc": "Simplify complex business processes with our user-friendly ERP solution."
-          },
-          {
-            "productName": "Product T",
-            "productDesc": "Maximize efficiency and profitability with our robust ERP platform."
-          },
-          {
-            "productName": "Product U",
-            "productDesc": "Transform your business with our scalable and adaptable ERP solution."
-          },
-          {
-            "productName": "Product V",
-            "productDesc": "Optimize resource allocation and management with our ERP software."
-          },
-          {
-            "productName": "Product W",
-            "productDesc": "Improve decision-making and strategic planning with our ERP system."
-          }
-        ]
-      },
-      {
-        heading: "Beta",
-        versions: [
-          { "productName": "Product A", "productDesc": "Enterprise version A description." },
-          { "productName": "Product B", "productDesc": "Enterprise version B description." },
-          {
-            "productName": "Product W",
-            "productDesc": "Powerful ERP solution to enhance productivity and optimize processes."
-          },
-          {
-            "productName": "Product P",
-            "productDesc": "Efficiently manage accounts, leaves, and more with our mobile-friendly ERP."
-          },
-          {
-            "productName": "Product Q",
-            "productDesc": "Customizable ERP system tailored to meet your business needs."
-          },
-          {
-            "productName": "Product R",
-            "productDesc": "Stay ahead of the curve with our cutting-edge enterprise resource planning software."
-          },
-          {
-            "productName": "Product S",
-            "productDesc": "Simplify complex business processes with our user-friendly ERP solution."
-          },
-          {
-            "productName": "Product T",
-            "productDesc": "Maximize efficiency and profitability with our robust ERP platform."
-          },
-          {
-            "productName": "Product U",
-            "productDesc": "Transform your business with our scalable and adaptable ERP solution."
-          },
-          {
-            "productName": "Product V",
-            "productDesc": "Optimize resource allocation and management with our ERP software."
-          },
-          {
-            "productName": "Product W",
-            "productDesc": "Improve decision-making and strategic planning with our ERP system."
-          }
-        ]
-      },
-    ];
-    setTimeout(() => {
-      this.firstButton.nativeElement.click();
+    this.activeTabIndex = 1;
+    let Appurl = environment.ApiUrl(environment.GetAppListByCategoryId);
+    let url = environment.ApiUrl(environment.GetCategories_List);
+debugger;
+    this.commonService.get(url).subscribe((res: any) => {
+      console.log(res);
+      if (res.status) {
+        res.categoryList.forEach((category: any) => {
+          console.log(`ID: ${category.id}, Name: ${category.name.trim()}`);
+          let apps: any[] = [];
+          this.commonService.get(Appurl + "/" + category.id).subscribe((Appres: any) => {
+            if (Appres.status) {
+              Appres.appList.forEach((app: any) => {
+                apps.push({
+                  id: app.id,
+                  productName: app.productName,
+                  productDesc: app.productDesc,
+                  bannerImage: app.bannerImage,
+                  logoImage: app.logoImage
+                });
+              });
+              this.versionsData.push({
+                heading: category.name.trim(),
+                versions: apps
+              });
+            }
+          });
+        });
+      }
     });
   }
 }
