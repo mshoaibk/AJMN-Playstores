@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { environment } from 'src/environments/environment.development';
+import { CommonService } from '../services/common.service';
 
 @Component({
   selector: 'app-ajmn-playstore',
@@ -6,14 +8,41 @@ import { Component } from '@angular/core';
   styleUrls: ['./ajmn-playstore.component.scss'],
 })
 export class AjmnPlaystoreComponent {
-  versionsData!: { heading: string; versions: { productName: string; productDesc: string; }[] }[];
+  categoryData!: { heading: string; Apps: { productName: string; productDesc: string; }[] }[];
   activeTabIndex: number = 0;
+  constructor(
+    private commonService:CommonService
+  ){
+
+  }
   ngOnInit() {
     // Structure your data with headings
-    this.versionsData = [
+    let Appurl = environment.ApiUrl(environment.GetAppListByCategoryId);
+    
+    //gatCategory
+
+    let url = environment.ApiUrl(environment.GetCategories_List);
+    this.commonService.get(url).subscribe((res:any)=>{
+      console.log(res);
+      if(res.status){
+        
+         res.categoryList.forEach((category: any) => {
+          console.log(`ID: ${category.id}, Name: ${category.name.trim()}`);
+        
+          let apps: any[] = [];
+          this.commonService.get(Appurl+"/"+category.id).subscribe((Appres:any)=>{
+            if(res.status){
+              apps = 
+            }
+          })
+
+        });
+      }
+    })
+    this.categoryData = [
       {
         heading: "Public",
-        versions: [
+        Apps: [
           { "productName": "Product X", "productDesc": "Innovative solution for managing enterprise resources efficiently on any device." },
           { "productName": "Product Y", "productDesc": "Comprehensive enterprise resource planning system designed for modern businesses." },
           {
@@ -56,7 +85,7 @@ export class AjmnPlaystoreComponent {
       },
       {
         heading: "Enterprise",
-        versions: [
+        Apps: [
           { "productName": "Product A", "productDesc": "Enterprise version A description." },
           { "productName": "Product B", "productDesc": "Enterprise version B description." },
           {
@@ -99,7 +128,7 @@ export class AjmnPlaystoreComponent {
       },
       {
         heading: "Beta",
-        versions: [
+        Apps: [
           { "productName": "Product A", "productDesc": "Enterprise version A description." },
           { "productName": "Product B", "productDesc": "Enterprise version B description." },
           {
@@ -142,4 +171,5 @@ export class AjmnPlaystoreComponent {
       },
     ];
   }
+
 }

@@ -54,7 +54,7 @@
 
     <div class="mt-5">
         <ul class="nav nav-pills mb-5 tab-change-on-larger" id="pills-tab" role="tablist">
-            <li class="nav-item" role="presentation" *ngFor="let item of versionsData; let i = index">
+            <li class="nav-item" role="presentation" *ngFor="let item of categoryData; let i = index">
                 <button class="nav-link" 
                         [class.active]="activeTabIndex === i"
                         [id]="'pills-' + item.heading.toLowerCase() + '-tab'"
@@ -69,12 +69,12 @@
             </li>
         </ul>
         <div class="tab-content" id="pills-tabContent mt-5">
-            <div class="tab-pane fade" *ngFor="let item of versionsData; let i = index"
+            <div class="tab-pane fade" *ngFor="let item of categoryData; let i = index"
             [class.show]="i === 0"
             [id]="'pills-' + item.heading.toLowerCase()"
             role="tabpanel"
             [attr.aria-labelledby]="'pills-' + item.heading.toLowerCase() + '-tab'">
-           <app-versions [versions]="item.versions" [heading]="item.heading"></app-versions>
+           <app-versions [Apps]="item.Apps" [heading]="item.heading"></app-versions>
        </div>
         </div>
         <div class="small-tab-change">

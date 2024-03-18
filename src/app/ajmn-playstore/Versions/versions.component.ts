@@ -6,11 +6,12 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./versions.component.scss']
 })
 export class PublicComponent implements OnInit {
-  @Input() versions!: { productName: string; productDesc: string; }[];
+  @Input() Apps!: { productName: string; productDesc: string; }[];
   @Input() heading!: string;
 
   ngOnInit() {
-    console.log("Versions:", this.versions);
+    debugger;
+    console.log("Versions:", this.Apps);
     console.log("Heading:", this.heading);
   }
 }
