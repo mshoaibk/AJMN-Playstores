@@ -1,4 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
+import { environment } from 'src/environments/environment.development';
+import { CommonService } from '../services/common.service';
 
 @Component({
   selector: 'app-ajmn-playstore',
@@ -6,8 +8,16 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
   styleUrls: ['./ajmn-playstore.component.scss'],
 })
 export class AjmnPlaystoreComponent {
+  constructor(
+    private commonService: CommonService
+  ){
+
+  }
   categoryData!: { heading: string; Apps: { productName: string; productDesc: string; }[] }[];
   activeTabIndex: number = 0;
+  setActiveTab(index: number) {
+    this.activeTabIndex = index;
+  }
   ngOnInit() {
     this.activeTabIndex = 0;
    
@@ -27,7 +37,7 @@ export class AjmnPlaystoreComponent {
           let apps: any[] = [];
           this.commonService.get(Appurl+"/"+category.id).subscribe((Appres:any)=>{
             if(res.status){
-              apps = 
+              
             }
           })
 
