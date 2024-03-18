@@ -57,6 +57,7 @@
                     margin: 0px;
                     font-size: 18px;
                     font-weight: 700;
+                    font-family: al-jazeera-bold;
                     line-height: 20px;
                 }
             }
@@ -72,6 +73,7 @@
                 background-color: transparent;
                 color: #666666;
                 font-size: 26px;
+                font-family: al-jazeera-regular;
                 font-weight: 500;
             }
 
@@ -100,7 +102,9 @@
         display: none;
     }
 }
-
+.arabic-section{
+    display: block !important;
+}
 /* Media Query for screens smaller than 768px */
 @media (max-width: 768px) {
     .not-on-small {
@@ -121,13 +125,18 @@
         text-align: center;
         font-size: 16px;
         font-weight: 600;
+        font-family: al-jazeera-bold;
         color: white;
+    }
+    .arabic-section{
+        display: none !important;
     }
 
     .left-sectionl {
         display: flex;
         gap: 10px;
         font-size: 26px;
+        font-family: al-jazeera-bold;
         line-height: 22px;
         font-weight: 700;
     }
@@ -152,6 +161,7 @@
     .top-text{
         font-size: 16px;
         font-weight: 500;
+        font-family: al-jazeera-regular;
         color: lightgray;
     }
     .bottom-text{
@@ -166,7 +176,27 @@
         border: 0px;
         height: 45px;
         font-size: 17px;
+        font-family: al-jazeera-bold;
         font-weight: 600;
     }
 }
+.carousel-item{
+    .content{
+        font-size: 17px;
+        font-family: al-jazeera-bold;
+        font-weight: 600;
+    }
+    .personal{
+        font-size: 14px;
+        font-family: al-jazeera-regular;
+        font-weight: 500;
+        padding: 1% 14%;
+    }
+}
 
+.arabic-show{
+    display: block !important;
+}
+.arabic-hide{
+    display: none !important;
+}

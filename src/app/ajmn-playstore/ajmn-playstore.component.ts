@@ -1,6 +1,4 @@
-import { Component } from '@angular/core';
-import { environment } from 'src/environments/environment.development';
-import { CommonService } from '../services/common.service';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-ajmn-playstore',
@@ -10,12 +8,9 @@ import { CommonService } from '../services/common.service';
 export class AjmnPlaystoreComponent {
   categoryData!: { heading: string; Apps: { productName: string; productDesc: string; }[] }[];
   activeTabIndex: number = 0;
-  constructor(
-    private commonService:CommonService
-  ){
-
-  }
   ngOnInit() {
+    this.activeTabIndex = 0;
+   
     // Structure your data with headings
     let Appurl = environment.ApiUrl(environment.GetAppListByCategoryId);
     
@@ -170,6 +165,9 @@ export class AjmnPlaystoreComponent {
         ]
       },
     ];
+    setTimeout(() => {
+      this.firstButton.nativeElement.click();
+    });
   }
 
 }
