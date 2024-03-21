@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router'; // Import Router
+import { ImageUrlGanateterService } from '../services/image-url-ganateter.service';
+import { environment } from 'src/environments/environment.development';
+import { CommonService } from '../services/common.service';
 
 
 @Component({
@@ -12,18 +15,26 @@ export class AjmnDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router, // Inject Router
     //private apiService: ApiService // Inject ApiService or your service name for fetching data
+    public imageUrlGanateterService: ImageUrlGanateterService,
+    private commonService: CommonService
   ) {}
+  appDetailsModel:any={};
+  
+  
+  logoimageUrl: string='';
+  bannerimageUrls: string[] = [];
+  screenshotimageUrls: string[] = [];
+
+  
 
   appId: any;
   showEnglishSection = true;
-  appDetails: any; // Assuming you want to fetch details of the app
+   
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.appId = params['id'];
       console.log(this.appId);
-      // Now you can use this.id in your component
-      // Assuming you want to fetch details of the app based on appId
       this.fetchAppDetails(this.appId);
     });
   }
@@ -33,16 +44,34 @@ export class AjmnDetailComponent implements OnInit {
   }
 
   fetchAppDetails(id: any) {
-    // Assuming you have a method in ApiService to fetch app details by ID
-    // this.apiService.getAppDetails(id).subscribe(
-    //   (response: any) => {
-    //     this.appDetails = response;
-    //     // Handle response or assign it to any variable to use in your template
-    //   },
-    //   (error: any) => {
-    //     console.error(error);
-    //     // Handle error
-    //   }
-    // );
+    let url = environment.ApiUrl(environment.GetAppDetailsById+"/"+id);
+    this.commonService.get(url).subscribe((responseData: any) => {
+      console.log(responseData);
+      this.appDetailsModel = {
+        "appId": responseData.data.appId,
+        "categoryName": responseData.data.categoryName,
+        "appName": responseData.data.appName,
+        "description": responseData.data.description,
+        "isDeleted": responseData.data.isDeleted,
+        "features_Eng": responseData.data.features_Eng,
+        "features_Ar": responseData.data.features_Ar,
+        "userGuide_Eng": responseData.data.userGuide_Eng,
+        "userGuide_Ar": responseData.data.userGuide_Ar,
+        "logoUrl": responseData.data.logoUrl,
+        "bannerUrls": responseData.data.bannerUrls,
+        "screenshotUrls": responseData.data.screenshotUrls,
+        "appPlatformFiles": responseData.data.appPlatformFiles.map((file: any) => ({
+          "id": file.id,
+          "platName": file.platName,
+          "platformLogo": file.platformLogo,
+          "filePath": file.filePath,
+          "version": file.version,
+          "size": file.size,
+          "publishedDate": file.publishedDate,
+          "isExternal": file.isExternal
+        }))
+      };
+      console.log("appDetailsModel",this.appDetailsModel)
+    })
   }
 }

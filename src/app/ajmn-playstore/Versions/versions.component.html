@@ -1,5 +1,5 @@
 <div class="main-cards w-100">
-  <div [routerLink]="['/ajmn-playstore/ajmn-details', version.id]" class="card" *ngFor="let version of versions">
+  <div [routerLink]="['/ajmn-playstore/ajmn-details', version.id]" class="card" *ngFor="let version of Apps">
     <img class="card-img-top" [src]="'data:image/png;base64,' + version.bannerImage"
       alt="Card image cap">
     <div class="card-body">

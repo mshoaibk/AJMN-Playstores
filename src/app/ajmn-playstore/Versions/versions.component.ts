@@ -12,11 +12,11 @@ export class PublicComponent implements OnInit {
   ){
 
   }
-  @Input() versions!: { id: any; productName: string; productDesc: string; bannerImage: string; logoImage: string }[];
+  @Input() Apps!: { id: any; productName: string; productDesc: string; bannerImage: string; logoImage: string }[];
   @Input() heading!: string;
 
   ngOnInit() {
-    console.log("Versions:", this.versions);
+    console.log("Versions:", this.Apps);
     console.log("Heading:", this.heading);
   }
   ShowDetails(id:any){
