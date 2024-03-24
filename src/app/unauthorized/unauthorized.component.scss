@@ -1,0 +1,41 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .error-container {
+    text-align: center;
+  
+    i {
+      font-size: 4rem;
+      color: #e44d26; /* Google's Material Design red */
+    }
+  
+    h1 {
+      font-size: 2rem;
+      margin: 10px 0;
+      color: #333;
+    }
+  
+    p {
+      font-size: 1.2rem;
+      margin: 10px 0;
+      color: #555;
+    }
+  
+    a {
+      text-decoration: none;
+      color: #e44d26;
+      font-weight: bold;
+      border-bottom: 2px solid #e44d26;
+      transition: color 0.3s, border-bottom 0.3s;
+  
+      &:hover {
+        color: #333;
+        border-bottom-color: #333;
+      }
+    }
+  }
+  

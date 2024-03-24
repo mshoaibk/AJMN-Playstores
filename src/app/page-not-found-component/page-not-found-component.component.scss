@@ -1,0 +1,42 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+  }
+  
+  .not-found-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .not-found-content {
+    text-align: center;
+  }
+  
+  h1 {
+    font-size: 8rem;
+    margin: 0;
+    color: #e44d26; /* Google's Material Design red */
+  }
+  
+  p {
+    font-size: 1.5rem;
+    margin: 10px 0;
+    color: #333;
+  }
+  
+  a {
+    text-decoration: none;
+    color: #e44d26;
+    font-weight: bold;
+    border-bottom: 2px solid #e44d26;
+    transition: color 0.3s, border-bottom 0.3s;
+  
+    &:hover {
+      color: #333;
+      border-bottom-color: #333;
+    }
+  }
+  

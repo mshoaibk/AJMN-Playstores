@@ -4,6 +4,7 @@ import { AjmnPlaystoreRoutingModule } from './ajmn-playstore-routing.module';
 import { AjmnPlaystoreComponent } from './ajmn-playstore.component';
 import { AjmnDetailComponent } from './ajmn-detail/ajmn-detail.component';
 import { PublicComponent } from './Versions/versions.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { PublicComponent } from './Versions/versions.component';
   ],
   imports: [
     CommonModule,
-    AjmnPlaystoreRoutingModule
+    AjmnPlaystoreRoutingModule,
+    FormsModule
   ]
 })
 export class AjmnPlaystoreModule { }

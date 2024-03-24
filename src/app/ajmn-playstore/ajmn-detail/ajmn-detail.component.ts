@@ -4,6 +4,7 @@ import { ImageUrlGanateterService } from '../services/image-url-ganateter.servic
 import { environment } from 'src/environments/environment.development';
 import { CommonService } from '../services/common.service';
 import { FileDownloadService } from '../services/file-download.service';
+import { UserContextService } from '../services/user-context.service';
 
 
 @Component({
@@ -14,6 +15,9 @@ import { FileDownloadService } from '../services/file-download.service';
 export class AjmnDetailComponent implements OnInit {
   @ViewChild('dropdownMenu', { static: true }) dropdownMenu!: ElementRef;
   isDropdownOpen = false;
+  reviewModel:any={};
+  username:string=''
+  AppReviewsList:any=[];
   constructor(
     private elementRef: ElementRef,
     private route: ActivatedRoute,
@@ -21,8 +25,12 @@ export class AjmnDetailComponent implements OnInit {
     //private apiService: ApiService // Inject ApiService or your service name for fetching data
     public imageUrlGanateterService: ImageUrlGanateterService,
     private fileDownloadService: FileDownloadService,
-    private commonService: CommonService
-  ) {}
+    private commonService: CommonService,
+    private userContextService: UserContextService,
+    
+  ) {
+    this.username = this.userContextService.user$._value== null?'':this.userContextService.user$?._value.userinfo.surname;
+  }
 
   @HostListener('document:click', ['$event'])
   onClick(event: MouseEvent): void {
@@ -53,6 +61,7 @@ export class AjmnDetailComponent implements OnInit {
       this.appId = params['id'];
       console.log(this.appId);
       this.fetchAppDetails(this.appId);
+      this.fetchAppReview(this.appId)
     });
   }
 
@@ -106,4 +115,30 @@ export class AjmnDetailComponent implements OnInit {
     });
    }
   }
-}
+
+  PostReview(){
+    let model = {
+      "appId": this.appId,
+      "review":  this.reviewModel.Review,
+      "userName": this.username
+    }
+    let url = environment.ApiUrl(environment.PostReview);
+    this.commonService.post(url,model).subscribe((responseData: any) => {
+      console.log(responseData)
+      if(responseData.status){
+        this.reviewModel.Review = '';
+        this.fetchAppReview(this.appId)
+      }
+    });
+    }
+  fetchAppReview(_appid:any){
+    let url = environment.ApiUrl(environment.GetAppReviews+"/"+_appid);
+    this.commonService.get(url).subscribe((responseData: any) => {
+      if(responseData.status){
+        debugger
+        this.AppReviewsList = responseData.reviews
+      }
+    })
+    }
+  }
+

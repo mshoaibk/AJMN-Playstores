@@ -1,11 +1,13 @@
 <div>
   <nav class="navbar ps-3 pe-3">
-    <div><img src="../assets/navbar/User_Circle.svg" width="40" height="40" alt="user"></div>
+    <div *ngIf="!auth.isAuthenticated" (click)="login()"><img src="../assets/navbar/User_Circle.svg" width="40" height="40" alt="user" >
+    </div >
+    <div *ngIf="auth.isAuthenticated" (click)=" auth.logout()"><img src="../assets/navbar/User_Circle.svg" width="40" height="40" alt="user" >{{auth.username}}</div>
     <div>
       <img src="../assets/navbar/AJMN Logo.svg" alt="ajmn_logo">
     </div>
     <div>
-      <img src="../assets/navbar/Search.svg" width="40" height="40" alt="">
+      <!-- <img src="../assets/navbar/Search.svg" width="40" height="40" alt=""> -->
     </div>
   </nav>
   <router-outlet></router-outlet>
