@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router'; // Import Router
 import { ImageUrlGanateterService } from '../services/image-url-ganateter.service';
 import { environment } from 'src/environments/environment.development';
 import { CommonService } from '../services/common.service';
+import { FileDownloadService } from '../services/file-download.service';
 
 
 @Component({
@@ -11,13 +12,29 @@ import { CommonService } from '../services/common.service';
   styleUrls: ['./ajmn-detail.component.scss']
 })
 export class AjmnDetailComponent implements OnInit {
+  @ViewChild('dropdownMenu', { static: true }) dropdownMenu!: ElementRef;
+  isDropdownOpen = false;
   constructor(
+    private elementRef: ElementRef,
     private route: ActivatedRoute,
     private router: Router, // Inject Router
     //private apiService: ApiService // Inject ApiService or your service name for fetching data
     public imageUrlGanateterService: ImageUrlGanateterService,
+    private fileDownloadService: FileDownloadService,
     private commonService: CommonService
   ) {}
+
+  @HostListener('document:click', ['$event'])
+  onClick(event: MouseEvent): void {
+    if (!this.elementRef.nativeElement.contains(event.target)) {
+      this.isDropdownOpen = false;
+    }
+  }
+
+  toggleDropdown(): void {
+    this.isDropdownOpen = !this.isDropdownOpen;
+  }
+
   appDetailsModel:any={};
   
   
@@ -73,5 +90,20 @@ export class AjmnDetailComponent implements OnInit {
       };
       console.log("appDetailsModel",this.appDetailsModel)
     })
+  }
+  downloadFile(model:any){
+   if(model.isExternal){
+    //redirect
+
+   }
+   else{
+    //download
+    const url = environment.ApiUrl(environment.GetFilePath_ById + "/" + model.id);
+    this.commonService.get(url).subscribe((responseData: any) => {
+      if (responseData.status) {
+        this.fileDownloadService.downloadFile(responseData.fileDataBase64, "xyz",'application/zip');
+      }
+    });
+   }
   }
 }

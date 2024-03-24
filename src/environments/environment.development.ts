@@ -7,6 +7,7 @@ export const environment = {
   //controller : App
   GetAppListByCategoryId :  '/api/App/GetAppListByCategoryId',
   GetAppDetailsById :  '/api/App/GetAppDetailsById',
+  GetFilePath_ById :  '/api/App/GetFilePath_ById',
     
     
     //controller : Category

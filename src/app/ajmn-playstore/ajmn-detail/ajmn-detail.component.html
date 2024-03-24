@@ -1,5 +1,5 @@
 <div class="main-page">
-    <div class="top-page">
+    <div class="top-page" [style.background-image]="imageUrlGanateterService.constructDataURI(appDetailsModel.bannerUrls[0])">
         <div class="d-flex gap-4">
             <div class="left-section not-on-small">
                 <img [src]="imageUrlGanateterService.constructDataURI(appDetailsModel.logoUrl)" alt="">
@@ -20,10 +20,21 @@
                         <p>Android</p>
                         <img src="../../../assets/detail/Android.svg" width="60" height="60" alt="">
                     </div> -->
-                    <div *ngFor="let platform of appDetailsModel.appPlatformFiles">
-                        <p>{{platform.platName}}</p>
+                    <div *ngFor="let platform of appDetailsModel.appPlatformFiles" style="margin-left: 2%;">
+                        <!-- <p>{{platform.platName}}</p> -->
                         <img [src]="imageUrlGanateterService.constructDataURI(platform.platformLogo)" width="60" height="60" alt="">
                     </div>
+                </div>
+                <div class="not-on-small"  >
+
+                    <div class="custom-dropdown justify-content-center w-100 mt-5" style="margin-left: 0px !important ;"   (click)="toggleDropdown()">
+                        <button class="btn btn-secondary dropdown-toggle " type="button" id="dropdownMenuButton">
+                            Install For
+                        </button>
+                        <div class="dropdown-menu" *ngIf="isDropdownOpen" #dropdownMenu aria-labelledby="dropdownMenuButton">
+                          <div class="dropdown-item" href="#" *ngFor="let platform of appDetailsModel.appPlatformFiles" href="#" (click)="downloadFile(platform)"> <img [src]="imageUrlGanateterService.constructDataURI(platform.platformLogo)" style="width: 30px;" alt="" > For ({{platform.platName}})</div>
+                        </div>
+                      </div>
                 </div>
             </div>
 
@@ -62,7 +73,7 @@
             </div>
         </div>
 
-        <div class="dropdown d-flex  justify-content-center w-100 mt-4">
+        <!-- <div class="dropdown d-flex  justify-content-center w-100 mt-4">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="d-flex align-items-center justify-content-between ">
@@ -80,7 +91,16 @@
                 <a class="dropdown-item" href="#">Another action</a>
                 <a class="dropdown-item" href="#">Something else here</a>
             </div>
-        </div>
+        </div> -->
+        <div class="custom-dropdown justify-content-center w-100 mt-4" (click)="toggleDropdown()">
+            <button class="btn btn-secondary dropdown-toggle " type="button" id="dropdownMenuButton">
+                Install For
+            </button>
+            <div class="dropdown-menu" *ngIf="isDropdownOpen" #dropdownMenu aria-labelledby="dropdownMenuButton">
+              <div class="dropdown-item" href="#" *ngFor="let platform of appDetailsModel.appPlatformFiles" href="#" (click)="downloadFile(platform)"> <img [src]="imageUrlGanateterService.constructDataURI(platform.platformLogo)" style="width: 30px;" alt="" > For ({{platform.platName}})</div>
+            </div>
+          </div>
+      
     </div>
     <div class="detail-section">
         <div class="mobile">
@@ -101,23 +121,23 @@
             <div class="bottom-text-section">
                 <div *ngIf="showEnglishSection">
                     <div>
-                        <pre>{{appDetailsModel.features_Eng}}</pre>
+                        <pre class="Info">{{appDetailsModel.features_Eng}}</pre>
                         
                     </div>
                     <div class="mt-4">
-                        <p>Users Guide:</p>
-                        <pre>{{appDetailsModel.userGuide_Eng}}</pre>
+                        <!-- <h3 class="info">Users Guide:</h3> -->
+                        <pre class="Info">{{appDetailsModel.userGuide_Eng}}</pre>
                         
                     </div>
                 </div>
                 <div [ngClass]="!showEnglishSection ? 'arabic-show' : ''"
                     class="d-flex arabic-section w-100 align-items-center justify-content-start text-start">
                     <div class="arabic">
-                        <pre>{{appDetailsModel.features_Ar}}</pre>
+                        <pre class="Info">{{appDetailsModel.features_Ar}}</pre>
                     </div>
                     <br>
                     <div class="arabic">
-                        <pre>{{appDetailsModel.features_Ar}}</pre>
+                        <pre class="Info">{{appDetailsModel.features_Ar}}</pre>
                     </div>
                 </div>
             </div>
