@@ -20,8 +20,8 @@ export const environment = {
    //msal configration
    msalConfig: {
     auth: {
-      clientId: 'e011a5e6-7786d44c07ff4bb5-4ee6-9208-',
-      authority: 'htogif-1560netotps://lnli0-44e0-acaf.cn.microsoom/3d49507e-9143c7194be',
+      clientId: 'e011a5e6-7786-4ee6-9208-d44c07ff4bb5',
+      authority: 'https://login.microsoftonline.com/3d49507e-9140-44e0-acaf-15603c7194be',
       redirectUri: '/',
     },
   },
