@@ -1,7 +1,8 @@
-import { Component, } from '@angular/core';
+import { Component, ElementRef, } from '@angular/core';
 import { environment } from 'src/environments/environment.development';
 import { CommonService } from './services/common.service';
 import { forkJoin } from 'rxjs';
+import { ImageUrlGanateterService } from './services/image-url-ganateter.service';
 
 @Component({
   selector: 'app-ajmn-playstore',
@@ -11,11 +12,24 @@ import { forkJoin } from 'rxjs';
 export class AjmnPlaystoreComponent {
   categoryData: { heading: string; Apps: { id: any; productName: string; productDesc: string; bannerImage: string; logoImage: string }[] }[] = [];
   activeTabIndex: number = 0;
-
+  slideShowList:any=[];
   constructor(private commonService: CommonService,
-   
+    private elementRef: ElementRef,
+    public ImageUrlGanateterService : ImageUrlGanateterService
     ) {}
-
+    prevSlide(): void {
+      const carousel = this.elementRef.nativeElement.querySelector('.carousel-control-prev');
+      if (carousel) {
+        carousel.dispatchEvent(new Event('click'));
+      }
+    }
+  
+    nextSlide(): void {
+      const carousel = this.elementRef.nativeElement.querySelector('.carousel-control-next');
+      if (carousel) {
+        carousel.dispatchEvent(new Event('click'));
+      }
+    }
   setActiveTab(index: number) {
     this.activeTabIndex = index;
   }
@@ -23,7 +37,7 @@ export class AjmnPlaystoreComponent {
   ngOnInit() {
 
 
-
+    this.getSlideShowdata()
 this.activeTabIndex = 0;
 let Appurl = environment.ApiUrl(environment.GetAppListByCategoryId);
 let url = environment.ApiUrl(environment.GetCategories_List);
@@ -57,4 +71,13 @@ this.commonService.get(url).subscribe((res: any) => {
     
     
   }
+  getSlideShowdata(){
+    let url = environment.ApiUrl(environment.GetAppListForSlideShow);
+              this.commonService.get(url).subscribe((res: any) => {
+              if(res.status){
+                this.slideShowList = res.appList;
+              }
+              })
+  }
 }
+

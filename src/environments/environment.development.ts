@@ -13,6 +13,7 @@ export const environment = {
   GetFilePath_ById :  '/api/App/GetFilePath_ById',
   PostReview :  '/api/App/PostReview',
   GetAppReviews :  '/api/App/GetAppReviews',
+  GetAppListForSlideShow :  '/api/App/GetAppListForSlideShow',
     
   //controller : Category
   GetCategories_List :  '/api/Category/GetCategories_List',

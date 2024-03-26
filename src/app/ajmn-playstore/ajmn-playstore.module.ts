@@ -6,11 +6,13 @@ import { AjmnDetailComponent } from './ajmn-detail/ajmn-detail.component';
 import { PublicComponent } from './Versions/versions.component';
 import { FormsModule } from '@angular/forms';
 
+
 @NgModule({
   declarations: [
     AjmnPlaystoreComponent,
     AjmnDetailComponent,
     PublicComponent,
+    
   ],
   imports: [
     CommonModule,

@@ -102,10 +102,34 @@
           </div>
       
     </div>
-    <div class="detail-section">
-        <div class="mobile">
-            <div *ngFor="let screenshot of appDetailsModel.screenshotUrls"><img [src]="imageUrlGanateterService.constructDataURI(screenshot)" alt=""></div>
-            
+    <div class="detail-section ">
+        <div class="not-on-small">
+            <div class="mobile">
+                <div *ngFor="let screenshot of appDetailsModel.screenshotUrls"><img [src]="imageUrlGanateterService.constructDataURI(screenshot)" alt=""></div>
+                
+            </div>
+        </div>
+        <div class="small-screen">
+            <div id="carouselExampleIndicators1" class="carousel slide mt-5" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item" *ngFor="let screenshot of appDetailsModel.screenshotUrls; let i = index" [ngClass]="{ 'active': 0 === i }">
+                        <div class="row">
+                            <div class="col-sm-4"></div>
+                            <div class="col-sm-4">
+                                <img class="carousel-item-image img-fluid" [src]="imageUrlGanateterService.constructDataURI(screenshot)" alt="...">
+                            </div>
+                            <div class="col-sm-4"></div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <a class="carousel-control-prev" (click)="prevSlide()" role="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                </a>
+                <a class="carousel-control-next" (click)="nextSlide()" role="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                </a>
+            </div>
         </div>
         <div class="mt-5">
             <div class="d-flex w-100 justify-content-between">

@@ -38,7 +38,23 @@ export class AjmnDetailComponent implements OnInit {
       this.isDropdownOpen = false;
     }
   }
+  prevSlide(): void {
+    const prevControl = this.elementRef.nativeElement.querySelector('.carousel-control-prev');
+    if (prevControl) {
+      prevControl.dispatchEvent(new Event('click'));
+    } else {
+      console.error('Previous control not found');
+    }
+  }
 
+  nextSlide(): void {
+    const nextControl = this.elementRef.nativeElement.querySelector('.carousel-control-next');
+    if (nextControl) {
+      nextControl.dispatchEvent(new Event('click'));
+    } else {
+      console.error('Next control not found');
+    }
+  }
   toggleDropdown(): void {
     this.isDropdownOpen = !this.isDropdownOpen;
   }
