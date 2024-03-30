@@ -7,13 +7,15 @@ import {
 } from '@azure/msal-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
 import { MSAL_INSTANCE, MsalBroadcastService, MsalRedirectComponent, MsalService } from '@azure/msal-angular';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { PageNotFoundComponentComponent } from './page-not-found-component/page-not-found-component.component';
 import { FormsModule } from '@angular/forms';
+import { CommonService } from './ajmn-playstore/services/common.service';
+import { AuthInterceptor } from './ajmn-playstore/services/auth.interceptor';
 
 export function MSALInstanceFactory(): IPublicClientApplication {
   return new PublicClientApplication(environment.msalConfig);
@@ -32,8 +34,14 @@ export function MSALInstanceFactory(): IPublicClientApplication {
   ],
   providers: [{ provide: MSAL_INSTANCE, useFactory: MSALInstanceFactory },
    { provide: LocationStrategy, useClass: HashLocationStrategy },
-   MsalService,
+  MsalService,
   MsalBroadcastService,
+  CommonService,
+  {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+  }
   ],
   bootstrap: [AppComponent,MsalRedirectComponent]
 })

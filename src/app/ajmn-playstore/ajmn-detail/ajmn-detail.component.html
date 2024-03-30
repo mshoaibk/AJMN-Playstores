@@ -189,43 +189,88 @@
                     </div>
                 </div>
                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <div class="text" style="width: 50%;" *ngFor="let review of AppReviewsList">
-                                    <div class="d-flex justify-content-start gap-3">
-                                        <img src="../../../assets/detail/User_Circle.svg" alt="" />
-                                        <div class="content d-flex ">
-                                            {{review.userName}}
-                                        </div>
-                                    </div>
-                                    <div class="d-flex gap-3 align-items-center img-position">
-                                        <div class="d-flex gap-3">
-                                            <p class="personal">"{{review.review}}"
-                                            </p>
-                                        </div>
+                    <div id="carouselExampleControlsReview" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item" *ngFor="let review of AppReviewsList; let i = index" [ngClass]="{ 'active': i  === 0 }">
+            <div class="not-on-small">
+                <div class="row justify-content-center " style="margin-left: 10%;margin-right: 10%;">
+                    <ng-container *ngIf="AppReviewsList[i]">
+                        <div class="col-md-6">
+                            <div class="text">
+                                <div class="d-flex justify-content-start gap-3">
+                                    <img src="../../../assets/detail/User_Circle.svg" alt="" />
+                                    <div class="content d-flex">
+                                        {{ AppReviewsList[i].userName }}
                                     </div>
                                 </div>
-                               
+                                <div class="d-flex gap-3 align-items-center img-position">
+                                    <div class="d-flex gap-3">
+                                        <p class="personal">"{{ AppReviewsList[i].review }}"
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
-                            data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
-                            data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
-                    </div>
+                    </ng-container>
+                    <ng-container *ngIf="AppReviewsList[i + 1]">
+                        <div class="col-md-6">
+                            <div class="text">
+                                <div class="d-flex justify-content-start gap-3">
+                                    <img src="../../../assets/detail/User_Circle.svg" alt="" />
+                                    <div class="content d-flex">
+                                        {{ AppReviewsList[i + 1].userName }}
+                                    </div>
+                                </div>
+                                <div class="d-flex gap-3 align-items-center img-position">
+                                    <div class="d-flex gap-3">
+                                        <p class="personal">"{{ AppReviewsList[i + 1].review }}"
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+            <div class="small-screen">
+                <div class="row justify-content-center" style="margin-left: 10%;margin-right: 10%;">
+                    <ng-container *ngIf="AppReviewsList[i]">
+                        <div class="col-md-6">
+                            <div class="text">
+                                <div class="d-flex justify-content-start gap-3">
+                                    <img src="../../../assets/detail/User_Circle.svg" alt="" />
+                                    <div class="content d-flex">
+                                        {{ AppReviewsList[i].userName }}
+                                    </div>
+                                </div>
+                                <div class="d-flex gap-3 align-items-center img-position">
+                                    <div class="d-flex gap-3">
+                                        <p class="personal">"{{ AppReviewsList[i].review }}"
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+    <a class="carousel-control-prev" (click)="prevSlide()" role="button" data-bs-target="#carouselExampleControlsReview" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    </a>
+    <a class="carousel-control-next" (click)="nextSlide()" role="button" data-bs-target="#carouselExampleControlsReview" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    </a>
+</div>
+
                 </div>
             </div>
         </div>
     </div>
 </div>
-
+<br>
 
 
 
