@@ -25,16 +25,22 @@
                         <img [src]="imageUrlGanateterService.constructDataURI(platform.platformLogo)" width="60" height="60" alt="">
                     </div>
                 </div>
-                <div class="not-on-small"  >
-
-                    <div class="custom-dropdown justify-content-center w-100 mt-5" style="margin-left: 0px !important ;"   (click)="toggleDropdown()">
-                        <button class="btn btn-secondary dropdown-toggle " type="button" id="dropdownMenuButton">
-                            Install For
+                <div class="not-on-small mt-5"  >
+                    <div  class="d-flex justify-content-center w-100 ">
+                    <button (click)="downloadFileOfThisOS()" style="border-radius: 10px !important;" class="btn" style="background-color: #D5A10F; color: aliceblue; width: 300px" type="button" id="installButton">
+                        Install For {{OpratingSystem}}
+                    </button>
+                    <div style="border-left: 2px solid #21295d;">
+                        
+                    </div>
+                    <div class="custom-dropdown justify-content-center " style="margin-left: 0px !important ;"   (click)="toggleDropdown()">
+                        <button  class="btn btn-secondary dropdown-toggle " type="button" id="dropdownMenuButton">
                         </button>
                         <div class="dropdown-menu" *ngIf="isDropdownOpen" #dropdownMenu aria-labelledby="dropdownMenuButton">
                           <div class="dropdown-item" href="#" *ngFor="let platform of appDetailsModel.appPlatformFiles" href="#" (click)="downloadFile(platform)"> <img [src]="imageUrlGanateterService.constructDataURI(platform.platformLogo)" style="width: 30px;" alt="" > For ({{platform.platName}})</div>
                         </div>
                       </div>
+                    </div>
                 </div>
             </div>
 
@@ -53,17 +59,21 @@
             </div>
         </div>
         <p class="text-center">Get discounts and offers on your favorite brands and restaurants...</p>
-        <div class="d-flex justify-content-between align-items-end text-center ps-5 pe-5">
+        <div *ngIf="currentOsFile.version !=0" class="d-flex justify-content-between align-items-end text-center ps-5 pe-5">
+            <!-- <div>
+                <div class="top-text"><img [src]="imageUrlGanateterService.constructDataURI(currentOsFile.platformLogo)" width="60" height="60" alt=""></div>
+                <div class="bottom-text">OS</div>
+            </div> -->
             <div>
-                <div class="top-text">16 MB</div>
+                <div class="top-text">{{currentOsFile.size | number:'1.0-1'}}</div>
                 <div class="bottom-text">Size</div>
             </div>
             <div>
-                <div class="top-text">Sep 30 2022</div>
+                <div class="top-text"> {{this.currentOsFile.publishedDate | date: 'MMM dd yyyy' }}</div>
                 <div class="bottom-text">Published</div>
             </div>
             <div>
-                <div class="top-text">1.07</div>
+                <div class="top-text">{{currentOsFile.version}}</div>
                 <div class="bottom-text">Version</div>
             </div>
             <div>
@@ -92,14 +102,22 @@
                 <a class="dropdown-item" href="#">Something else here</a>
             </div>
         </div> -->
-        <div class="custom-dropdown justify-content-center w-100 mt-4" (click)="toggleDropdown()">
-            <button class="btn btn-secondary dropdown-toggle " type="button" id="dropdownMenuButton">
-                Install For
-            </button>
-            <div class="dropdown-menu" *ngIf="isDropdownOpen" #dropdownMenu aria-labelledby="dropdownMenuButton">
-              <div class="dropdown-item" href="#" *ngFor="let platform of appDetailsModel.appPlatformFiles" href="#" (click)="downloadFile(platform)"> <img [src]="imageUrlGanateterService.constructDataURI(platform.platformLogo)" style="width: 30px;" alt="" > For ({{platform.platName}})</div>
+        <div  class="d-flex justify-content-center  mt-5">
+            <div class="custom-dropdown justify-content-center " style="margin-left: 0px !important ;"   (click)="toggleDropdown()">
+                <button  style="width: 40px;" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton">
+                </button>
+                <div class="dropdown-menu"  *ngIf="isDropdownOpen" #dropdownMenu aria-labelledby="dropdownMenuButton">
+                  <div class="dropdown-item" href="#" *ngFor="let platform of appDetailsModel.appPlatformFiles" href="#" (click)="downloadFile(platform)"> <img [src]="imageUrlGanateterService.constructDataURI(platform.platformLogo)" style="width: 30px;" alt="" > For ({{platform.platName}})</div>
+                </div>
+              </div>
+            <div style="border-left: 2px solid #e4e4e4;">
+                        
             </div>
-          </div>
+            <button (click)="downloadFileOfThisOS()" class="btn" style="background-color: #D5A10F; color: aliceblue; width: 300px" type="button" id="installButton">
+                Install For {{OpratingSystem}}
+            </button>
+            
+            </div>
       
     </div>
     <div class="detail-section ">
@@ -110,7 +128,7 @@
             </div>
         </div>
         <div class="small-screen">
-            <div id="carouselExampleIndicators1" class="carousel slide mt-5" data-bs-ride="carousel">
+            <div id="carouselExampleIndicators1" class="carousel carousel-dark slide mt-5" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item" *ngFor="let screenshot of appDetailsModel.screenshotUrls; let i = index" [ngClass]="{ 'active': 0 === i }">
                         <div class="row">
@@ -189,7 +207,7 @@
                     </div>
                 </div>
                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                    <div id="carouselExampleControlsReview" class="carousel slide" data-bs-ride="carousel">
+                    <div id="carouselExampleControlsReview" class="carousel carousel-dark slide" data-bs-ride="carousel">
     <div class="carousel-inner">
         <div class="carousel-item" *ngFor="let review of AppReviewsList; let i = index" [ngClass]="{ 'active': i  === 0 }">
             <div class="not-on-small">

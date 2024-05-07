@@ -18,6 +18,8 @@ export class AjmnDetailComponent implements OnInit {
   reviewModel:any={};
   username:string=''
   AppReviewsList:any=[];
+  OpratingSystem:any ='';
+  currentOsFile:any={};
   constructor(
     private elementRef: ElementRef,
     private route: ActivatedRoute,
@@ -78,7 +80,28 @@ export class AjmnDetailComponent implements OnInit {
       console.log(this.appId);
       this.fetchAppDetails(this.appId);
       this.fetchAppReview(this.appId)
+      this.getOS();
+      
     });
+    this.currentOsFile.size = '0.0';
+   // this.currentOsFile.publishedDate = Date;
+    this.currentOsFile.version = '0';
+  }
+
+  getOS() {
+   
+    const userAgent = window.navigator.userAgent;
+    const platform = window.navigator.platform;
+    let os = 'Unknown OS';
+
+    if (userAgent.indexOf('Win') !== -1) os = 'Windows';
+    if (userAgent.indexOf('Mac') !== -1) os = 'MacOS';
+    if (userAgent.indexOf('X11') !== -1) os = 'UNIX';
+    if (userAgent.indexOf('Linux') !== -1) os = 'Linux';
+    if (/Android/.test(userAgent)) os = 'Android';
+    if (/iPhone/.test(userAgent)) os = 'iOS';
+
+    this.OpratingSystem =   os;
   }
 
   toggleLanguage() {
@@ -113,13 +136,26 @@ export class AjmnDetailComponent implements OnInit {
           "isExternal": file.isExternal
         }))
       };
-      console.log("appDetailsModel",this.appDetailsModel)
+    
+      const files = this.appDetailsModel.appPlatformFiles.filter((file:any) => file.platName.includes(this.OpratingSystem));
+      if (files.length > 0) {
+        const model = files[0];
+        this.currentOsFile.size = model.size ;
+         this.currentOsFile.publishedDate = model.publishedDate;
+         this.currentOsFile.version = model.version;
+         this.currentOsFile.platformLogo = model.platformLogo;
+      }
+      else{
+        this.OpratingSystem =''
+      }
+     
+     console.log("appDetailsModel",this.appDetailsModel)
     })
   }
   downloadFile(model:any){
    if(model.isExternal){
     //redirect
-
+    window.location.href = model.filePath;
    }
    else{
     //download
@@ -131,6 +167,32 @@ export class AjmnDetailComponent implements OnInit {
     });
    }
   }
+  downloadFileOfThisOS(){
+    
+    const files = this.appDetailsModel.appPlatformFiles.filter((file:any) => file.platName.includes(this.OpratingSystem));
+    if (files.length > 0) {
+      const model = files[0];
+      if (model.isExternal) {
+        window.location.href = model.filePath;
+      } else {
+      
+        const url = environment.ApiUrl(environment.GetFilePath_ById + "/" + model.id);
+        this.commonService.get(url).subscribe((responseData: any) => {
+          if (responseData.status) {
+          
+            this.fileDownloadService.downloadFile(responseData.fileDataBase64, "xyz", 'application/zip');
+          } else {
+           
+            console.error('Failed to retrieve the file');
+          }
+        });
+      }
+    } else {
+     
+      console.error('No files found for this OS');
+    }
+  }
+  
 
   PostReview(){
     let model = {
@@ -151,7 +213,7 @@ export class AjmnDetailComponent implements OnInit {
     let url = environment.ApiUrl(environment.GetAppReviews+"/"+_appid);
     this.commonService.get(url).subscribe((responseData: any) => {
       if(responseData.status){
-        debugger
+       
         this.AppReviewsList = responseData.reviews
       }
     })

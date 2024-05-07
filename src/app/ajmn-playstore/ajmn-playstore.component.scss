@@ -22,12 +22,15 @@
                     font-size: 70px;
                     font-weight: 600;
                     color: white;
-                    font-family: al-jazeera-bold;
+                   // font-family: al-jazeera-bold;
+                   font-family: 'al-jazeera', sans-serif;
+                   
                 }
 
                 p {
                     font-size: 22px;
-                    font-family: al-jazeera-regular;
+                   // font-family: al-jazeera-regular;
+                   font-family: 'al-jazeera', sans-serif;
                     line-height: 35px;
                     color: white;
                     text-align: start;
@@ -39,7 +42,8 @@
                     border-radius: 13px;
                     color: white;
                     padding: 15px;
-                    font-family: al-jazeera-bold;
+                   // font-family: al-jazeera-bold;
+                   font-family: 'al-jazeera', sans-serif;
                     font-size: 32px;
                     line-height: 32px;
                     font-weight: 500;
@@ -61,7 +65,8 @@
             color: #666666;
             font-size: 26px;
             font-weight: 500;
-            font-family: al-jazeera-bold;
+            //font-family: al-jazeera-bold;
+            font-family: 'al-jazeera', sans-serif;
         }
 
         .Cactive {

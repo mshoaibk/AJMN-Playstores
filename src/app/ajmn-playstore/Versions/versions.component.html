@@ -1,5 +1,5 @@
 <div class="main-cards w-100">
-  <div [routerLink]="['/ajmn-playstore/ajmn-details', version.id]" class="card" *ngFor="let version of Apps">
+  <div [routerLink]="['/ajmn-playstore/ajmn-details', version.id]" class="card" style="height: 400px;" *ngFor="let version of Apps">
     <img class="card-img-top" [src]="'data:image/png;base64,' + version.bannerImage"
       alt="Card image cap">
     <div class="card-body">
@@ -7,7 +7,7 @@
       <div class="card-text ps-2 pe-3">
         <div class="heading">{{ version.productName }}</div>
         <div class="text">
-          {{ version.productDesc }}
+          {{ version.productDesc.length > 60 ? (version.productDesc | slice:0:60) + '...' : version.productDesc }}
         </div>
       </div>
       <div class="small-screen-button">

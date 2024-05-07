@@ -6,17 +6,21 @@
     display: flex;
     justify-content: start;
     align-items: center;
+    font-family: 'al-jazeera', sans-serif;
     p{
         margin-bottom: 0px;
         padding-bottom: 0px;
         padding-left: 30px !important;
+        font-family: 'al-jazeera', sans-serif;
     }
 }
 .navbar{
     height: 70px;
+    font-family: 'al-jazeera', sans-serif;
 }
 @media (max-width: 768px) {
     .footer-section{
         display: none;
+
     }
 }
